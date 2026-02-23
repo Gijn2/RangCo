@@ -3,7 +3,7 @@
 ⚓ RANG Co. <br/>
 
 Project R: The Nexus of Stories <br/>
-민수가 먼 훗날 회사를 만드는 세계관을 웹페이지로 만들어보자.
+민수가 먼 훗날 회사를 만드는 미래을 위해 웹페이지로 만들어보자.
 
 
 
