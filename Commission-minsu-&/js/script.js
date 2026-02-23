@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ================== Hero Banner Button Scroll Logic (추가) ==================
-    const viewAllWorksBtn = document.querySelector('.hero-banner .cta-button');
+    const viewAllWorksBtn = document.querySelector('.cta-button');
     const worksSection = document.getElementById('novels'); 
 
     if (viewAllWorksBtn && worksSection) {
