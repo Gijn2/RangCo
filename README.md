@@ -1,12 +1,12 @@
 ※ 본 내용은 민수의 상상을 바탕으로 만든 가상의 설정입니다.
 
 ⚓ RANG Co.
-Project R: The Nexus of Stories
+Project R: The Nexus of Stories <br/>
 민수가 먼 훗날 회사를 만드는 세계관을 웹페이지로 만들어보자.
 
 
-🌌 1. Vision & Philosophy (회사소개)
-회사명 : 랑 (Rang)
+🌌 1. Vision & Philosophy (회사소개) <br/>
+회사명 : 랑 (Rang)                   <br/>
 meaning : 여러 작품을 하나로 연결시키는 '랑'이라는 조사
 
 Our Goal: Soft-Linking Universe
