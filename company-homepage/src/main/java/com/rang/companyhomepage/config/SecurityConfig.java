@@ -1,63 +1,50 @@
-package com.rang.companyhomepage.config; // 본인의 패키지 경로 확인
-
-import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
-import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.SecurityFilterChain;
-
-@Configuration
-@EnableWebSecurity // 주석 해제: 보안 기능을 활성화합니다.
-@RequiredArgsConstructor
-public class SecurityConfig {
-
-    // 1. 비밀번호 암호화 빈 (KISS: 가장 널리 쓰이는 BCrypt 사용)
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-    // 2. HTTP 보안 설정 (가장 핵심 로직)
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-                .authorizeHttpRequests(authorize -> authorize
-                        // 1. 누구나 볼 수 있는 페이지 (홈페이지, 숙소 리스트, 정적 리소스)
-                        .requestMatchers("/", "/index.html", "/accommodation/list", "/css/**", "/js/**").permitAll()
-
-                        // 2. 로그인이 필요한 페이지 (숙소 예약, 마이페이지 등 - 추후 확장)
-                        .requestMatchers("/accommodation/reserve/**", "/member/mypage").authenticated()
-
-                        .anyRequest().permitAll() // 우선 개발 편의를 위해 나머지도 허용 (나중에 바꾸세요!)
-                )
-                .formLogin(formLogin -> formLogin
-                        .loginPage("/") // 로그인 페이지 경로 (메인화면을 로그인창으로 쓰실 계획인가요?)
-                        .loginProcessingUrl("/member/login") // 실제 로그인 처리를 수행할 URL
-                        .defaultSuccessUrl("/main", true) // 로그인 성공 시 이동할 페이지
-                        .permitAll()
-                )
-                .logout(logout -> logout
-                        .logoutSuccessUrl("/") // 로그아웃 성공 시 이동할 페이지
-                        .invalidateHttpSession(true) // 세션 무효화
-                        .permitAll()
-                )
-                .sessionManagement(sessionManagement -> sessionManagement
-                        .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
-                        .maximumSessions(1) // 동시 접속 제한 (보안 강화)
-                        .maxSessionsPreventsLogin(true) // 중복 로그인 방지
-                );
-
-        return http.build();
-    }
-
-    // 3. 정적 리소스(CSS, JS, 이미지) 보안 무시 설정
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().requestMatchers("/resources/**", "/static/**", "/favicon.ico");
-    }
-}
+//package com.rang.companyhomepage.config; // 본인의 패키지 경로 확인
+//
+//import lombok.RequiredArgsConstructor;
+//import org.springframework.context.annotation.Bean;
+//import org.springframework.context.annotation.Configuration;
+//import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+//import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+//import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+//import org.springframework.security.config.http.SessionCreationPolicy;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.security.web.SecurityFilterChain;
+//
+//@Configuration
+//@EnableWebSecurity // 주석 해제: 보안 기능을 활성화합니다.
+//@RequiredArgsConstructor
+//public class SecurityConfig {
+//
+//    // 1. 비밀번호 암호화 빈 (KISS: 가장 널리 쓰이는 BCrypt 사용)
+//    @Bean
+//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//        http
+//                .csrf(csrf -> csrf.disable()) // 초기 개발 시 편의를 위해 CSRF 비활성화 (선택)
+//                .authorizeHttpRequests(authorize -> authorize
+//                        // 1. static 폴더의 index.html과 정적 리소스들을 모두 허용
+//                        .requestMatchers("/", "/index.html", "/static/**", "/css/**", "/js/**", "/images/**").permitAll()
+//
+//                        // 2. 나중에 만들 회원가입 관련 경로도 미리 허용
+//                        .requestMatchers("/member/**").permitAll()
+//
+//                        // 3. 그 외의 페이지(숙소 관리, 마이페이지 등)만 로그인을 요구
+//                        .anyRequest().authenticated()
+//                )
+//                .formLogin(form -> form
+//                        // .loginPage("/") 부분을 삭제하거나 실제 로그인 전용 페이지로 변경하세요.
+//                        // "/"로 설정하면 메인 페이지를 보려다 다시 메인(로그인창)으로 무한 루프가 생길 수 있습니다.
+//                        .loginPage("/member/login") // 로그인 폼 페이지를 따로 만드는 것이 유지보수에 좋습니다.
+//                        .permitAll()
+//                )
+//                .logout(logout -> logout.permitAll());
+//
+//        return http.build();
+//    }
+//
+//    // 3. 정적 리소스(CSS, JS, 이미지) 보안 무시 설정
+//    @Bean
+//    public WebSecurityCustomizer webSecurityCustomizer() {
+//        return (web) -> web.ignoring().requestMatchers("/resources/**", "/static/**", "/favicon.ico");
+//    }
+//}
