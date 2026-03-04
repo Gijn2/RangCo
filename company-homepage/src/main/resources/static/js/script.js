@@ -192,6 +192,10 @@ document.addEventListener('DOMContentLoaded', () => {
             case 'projectR':
                 targetPath = '../project/projectR.html';
                 break;
+            case 'test':
+                targetPath = '../project/test.html';
+                break;
+
             default:
                 console.error("Unknown project:", projectName);
                 return;
