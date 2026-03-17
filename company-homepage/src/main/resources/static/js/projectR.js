@@ -133,7 +133,7 @@ function updateMultiverse(pos) {
         activeParticleColor = '77, 0, 0'; // Dark Red
         
         if (!isVerified && !isLocked) {
-            rangMsg.innerText = "잠시만요! 여기부터는 확인이 필요해요! (찡긋)";
+            rangMsg.innerText = "잠시만요! 여기부터는 확인이 필요해요! ";
             if (!overlayShown) showVerificationOverlay();
         } else if (isVerified) {
             rangMsg.innerText = "Abyss의 비밀스러운 공간에 들어오셨군요. 환영합니다.";
