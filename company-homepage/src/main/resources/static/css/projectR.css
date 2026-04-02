@@ -392,3 +392,30 @@ body {
     color: #ccc;
     margin-bottom: 30px;
 }
+
+/* 만다오 VIP 섹션 전용 스타일 추가 */
+.vip-mandao-section {
+    border-top: 1px dashed var(--gold);
+    padding-top: 40px;
+    margin-top: 40px;
+}
+
+.mandao-link-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 24px;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.mandao-link-btn:hover {
+    background: var(--gold);
+    color: #000;
+    box-shadow: 0 0 15px var(--gold);
+    transform: translateY(-3px);
+}

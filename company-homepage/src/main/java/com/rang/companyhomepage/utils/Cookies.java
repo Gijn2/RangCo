@@ -4,7 +4,7 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class Cookies { // 클래스 이름을 유지하고 싶다면 내부 로직에서 Cookie(단수)를 정확히 써야 합니다.
+public class Cookies {
 
     // 쿠키 설정 함수
     public static void setCookie(HttpServletResponse response, String name, String value, int maxAge) {

@@ -139,6 +139,27 @@ function updateMultiverse(pos) {
             rangMsg.innerText = "Abyss의 비밀스러운 공간에 들어오셨군요. 환영합니다.";
         }
     }
+
+    // 이벤트 리스너 추가
+    document.addEventListener('DOMContentLoaded', () => {
+        const mandaoBtn = document.getElementById('mandaoReserveBtn');
+
+        if (mandaoBtn) {
+            mandaoBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetUrl = mandaoBtn.getAttribute('href');
+
+                // 화면 페이드 아웃 등 트랜지션 연출 후 이동
+                document.body.style.transition = "opacity 1s ease";
+                document.body.style.opacity = "0";
+
+                setTimeout(() => {
+                    window.location.href = targetUrl;
+                }, 1000);
+            });
+        }
+    });
+
 }
 
 // 4. 성인 인증 시스템 기능

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프라이빗 스테이, 만다오</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-stone-50 text-stone-800 font-sans">
+<header class="w-full py-6 bg-white shadow-sm flex justify-center">
+    <h1 class="text-3xl font-bold tracking-widest text-stone-900">MANDAO</h1>
+</header>
+
+<main class="max-w-4xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-xl">
+    <section class="mb-8">
+        <h2 class="text-2xl font-semibold mb-2">프라이빗 스테이 예약</h2>
+        <p class="text-stone-500 mb-6">자연 속 완벽한 휴식을 위한 단 하나의 공간입니다.</p>
+
+        <form id="reservationForm" class="flex flex-col gap-4">
+            <div class="flex gap-4">
+                <div class="flex-1">
+                    <label class="block text-sm font-medium mb-1">체크인</label>
+                    <input type="date" id="checkIn" class="w-full border-stone-300 rounded-md p-2 border focus:ring-2 focus:ring-stone-500" required>
+                </div>
+                <div class="flex-1">
+                    <label class="block text-sm font-medium mb-1">체크아웃</label>
+                    <input type="date" id="checkOut" class="w-full border-stone-300 rounded-md p-2 border focus:ring-2 focus:ring-stone-500" required>
+                </div>
+            </div>
+            <div>
+                <label class="block text-sm font-medium mb-1">예약자 성함</label>
+                <input type="text" id="guestName" placeholder="홍길동" class="w-full border-stone-300 rounded-md p-2 border focus:ring-2 focus:ring-stone-500" required>
+            </div>
+            <button type="submit" class="mt-4 bg-stone-900 text-white py-3 rounded-md hover:bg-stone-800 transition-colors font-semibold">
+                예약 요청하기
+            </button>
+        </form>
+        <p id="responseMsg" class="mt-4 text-center text-sm hidden"></p>
+    </section>
+</main>
+
+<script src="mandao.js"></script>
+</body>
+</html>
