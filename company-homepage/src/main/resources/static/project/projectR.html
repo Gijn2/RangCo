@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -58,7 +58,8 @@
     <header class="city-nav">
         <div class="nav-left-group" style="display: flex; align-items: center; gap: 20px;">
             <div class="city-logo">RANG<span>UNIVERSAL CITY</span></div>
-            <a href="../main/" class="terminate-btn">TERMINATE</a>
+            <a th:href="@{/index}" class="terminate-btn">TERMINATE</a>
+            <a th:href="@{/test}" class="terminate-btn">test</a>
         </div>
         <div class="nav-controls">
             <div class="rang-guide-bubble">
@@ -268,7 +269,7 @@
                         <h4>MANDAO: The Private Sanctuary</h4>
                         <p class="category">VIP Exclusive Retreat</p>
                         <p>끝없는 엔터테인먼트의 소용돌이에서 벗어나, 선택받은 소수만을 위해 준비된 완벽한 고요함. 최고급 프라이빗 민박 '만다오'에서 당신만의 시간을 예약하세요.</p>
-                        <a href="/mandao.html" class="mandao-link-btn" id="mandaoReserveBtn">만다오 비밀 초대장 열기</a>
+                        <a th:href="@{/mandao}" th:onclick="|navigateToProject('${mandao}')|" class="mandao-link-btn" id="mandaoReserveBtn">만다오 비밀 초대장 열기</a>
                     </div>
                 </div>
             </div>

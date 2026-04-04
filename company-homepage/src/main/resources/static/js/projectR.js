@@ -1,14 +1,23 @@
 /**
- * Project R: 통합 가이드 및 멀티버스 제어 시스템
- * 수정 사항: 성인 인증 로직 복구 및 존재하지 않는 ID 참조 제거
+ * Project R: 통합 가이드 및 멀티버스 제어 시스템 (수정본)
  */
 
-// 1. 배경 실시간 연결망 (Connection Canvas)
+// --- [전역 변수 설정] ---
 const canvas = document.getElementById('connection-canvas');
 const ctx = canvas.getContext('2d');
 let particles = [];
-let activeParticleColor = '212, 175, 55'; // 초기값: Gold (RGB)
+let activeParticleColor = '212, 175, 55';
 
+const circle = document.getElementById('fragment-progress');
+const radius = circle.r.baseVal.value;
+const circumference = radius * 2 * Math.PI;
+
+const rangMsg = document.getElementById('rang-message');
+let isVerified = false;
+let overlayShown = false;
+let isLocked = false;
+
+// --- [1. 캔버스 애니메이션 로직] ---
 function resize() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
@@ -64,42 +73,15 @@ function animate() {
     connectParticles();
     requestAnimationFrame(animate);
 }
-initCanvas();
-animate();
 
-
-// 2. 우측 하단 스토리 조각 진행 바 (Progress Circle)
-const circle = document.getElementById('fragment-progress');
-const radius = circle.r.baseVal.value;
-const circumference = radius * 2 * Math.PI;
-
-circle.style.strokeDasharray = `${circumference} ${circumference}`;
-circle.style.strokeDashoffset = circumference;
-
+// --- [2. UI 및 스크롤 제어 로직] ---
 function setProgress(percent) {
     const offset = circumference - (percent / 100 * circumference);
     circle.style.strokeDashoffset = offset;
     document.getElementById('fragment-percent').innerText = Math.floor(percent);
 }
 
-
-// 3. 통합 제어 로직 (가이드 랑 + 구역 감지 + 성인 인증 trigger)
-const rangMsg = document.getElementById('rang-message');
-let isVerified = false;  // 성인 인증 여부
-let overlayShown = false; // 인증창 노출 여부
-let isLocked = false;    // 미인증 시 접근 차단 상태
-
-window.addEventListener('scroll', () => {
-    const scrollPos = window.scrollY;
-    const totalHeight = document.body.scrollHeight - window.innerHeight;
-    const progress = (scrollPos / totalHeight) * 100;
-
-    setProgress(progress);
-    updateMultiverse(scrollPos);
-});
-
 function updateMultiverse(pos) {
-    // ID가 존재하는지 먼저 확인 (오류 방지)
     const sectorAbyss = document.getElementById('sector-abyss');
     if (!sectorAbyss) return;
 
@@ -108,15 +90,13 @@ function updateMultiverse(pos) {
 
     mapItems.forEach(item => item.classList.remove('active'));
 
-    // 1. 광장 및 테마파크 구역
     if (pos < abyssTop) {
-        mapItems[0].classList.add('active'); // Plaza
-        mapItems[1].classList.add('active'); // Park
-        
-        // 현재 스크롤 위치에 있는 부스 찾기
+        mapItems[0]?.classList.add('active'); // Plaza
+        mapItems[1]?.classList.add('active'); // Park
+
         const booths = document.querySelectorAll('.booth-section');
         let currentBoothName = "테마파크";
-        
+
         booths.forEach(booth => {
             if (pos >= booth.offsetTop - 500) {
                 currentBoothName = booth.querySelector('h3').innerText;
@@ -124,14 +104,12 @@ function updateMultiverse(pos) {
         });
 
         rangMsg.innerText = `지금 보시는 곳은 '${currentBoothName}' 부스예요! 정말 멋지죠?`;
-        activeParticleColor = '212, 175, 55'; // Gold
+        activeParticleColor = '212, 175, 55';
         isLocked = false;
-    } 
-    // 2. Abyss 구역 (성인 인증 필요)
-    else {
-        mapItems[2].classList.add('active');
-        activeParticleColor = '77, 0, 0'; // Dark Red
-        
+    } else {
+        mapItems[2]?.classList.add('active'); // Abyss
+        activeParticleColor = '77, 0, 0';
+
         if (!isVerified && !isLocked) {
             rangMsg.innerText = "잠시만요! 여기부터는 확인이 필요해요! ";
             if (!overlayShown) showVerificationOverlay();
@@ -139,36 +117,15 @@ function updateMultiverse(pos) {
             rangMsg.innerText = "Abyss의 비밀스러운 공간에 들어오셨군요. 환영합니다.";
         }
     }
-
-    // 이벤트 리스너 추가
-    document.addEventListener('DOMContentLoaded', () => {
-        const mandaoBtn = document.getElementById('mandaoReserveBtn');
-
-        if (mandaoBtn) {
-            mandaoBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetUrl = mandaoBtn.getAttribute('href');
-
-                // 화면 페이드 아웃 등 트랜지션 연출 후 이동
-                document.body.style.transition = "opacity 1s ease";
-                document.body.style.opacity = "0";
-
-                setTimeout(() => {
-                    window.location.href = targetUrl;
-                }, 1000);
-            });
-        }
-    });
-
 }
 
-// 4. 성인 인증 시스템 기능
+// --- [3. 성인 인증 시스템] ---
 function showVerificationOverlay() {
     overlayShown = true;
     const overlay = document.getElementById('verification-overlay');
     overlay.style.display = 'flex';
     setTimeout(() => { overlay.style.opacity = '1'; }, 10);
-    document.body.style.overflow = 'hidden'; // 스크롤 금지
+    document.body.style.overflow = 'hidden';
 }
 
 function verifyAge() {
@@ -179,8 +136,7 @@ function verifyAge() {
     const today = new Date();
     let age = today.getFullYear() - birthDate.getFullYear();
     const m = today.getMonth() - birthDate.getMonth();
-    
-    // 생일이 지나지 않았으면 한 살 차감
+
     if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) age--;
 
     if (age >= 19) {
@@ -190,7 +146,7 @@ function verifyAge() {
         overlay.style.opacity = '0';
         setTimeout(() => {
             overlay.style.display = 'none';
-            document.body.style.overflow = 'auto'; // 스크롤 허용
+            document.body.style.overflow = 'auto';
             rangMsg.innerText = "인증 완료! 어른들의 공간 '어비스'를 에스코트해 드릴게요.";
         }, 500);
     } else {
@@ -200,28 +156,53 @@ function verifyAge() {
     }
 }
 
-function closeVerification() {
-    isLocked = true;
-    exitVerification("알겠어요! 안전한 광장으로 다시 안내해 드릴게요!");
-}
-
 function exitVerification(msg) {
     const overlay = document.getElementById('verification-overlay');
     overlay.style.opacity = '0';
     setTimeout(() => {
         overlay.style.display = 'none';
         document.body.style.overflow = 'auto';
-        window.scrollTo({ top: 0, behavior: 'smooth' }); // 광장으로 튕겨냄
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         overlayShown = false;
         if (msg) rangMsg.innerText = msg;
     }, 500);
 }
 
+// --- [4. 초기화 및 이벤트 리스너 등록 (핵심)] ---
+document.addEventListener('DOMContentLoaded', () => {
+    // 진행바 초기화
+    circle.style.strokeDasharray = `${circumference} ${circumference}`;
+    circle.style.strokeDashoffset = circumference;
 
-// 5. 미니맵 점프 기능
+    // 만다오 버튼 클릭 핸들러 (한 번만 등록)
+    const mandaoBtn = document.getElementById('mandaoReserveBtn');
+    if (mandaoBtn) {
+        mandaoBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetUrl = mandaoBtn.getAttribute('href');
+            document.body.style.transition = "opacity 1s ease";
+            document.body.style.opacity = "0";
+            setTimeout(() => { window.location.href = targetUrl; }, 1000);
+        });
+    }
+
+    // 캔버스 시작
+    initCanvas();
+    animate();
+
+    // 스크롤 이벤트 연결
+    window.addEventListener('scroll', () => {
+        const scrollPos = window.scrollY;
+        const totalHeight = document.body.scrollHeight - window.innerHeight;
+        const progress = (scrollPos / totalHeight) * 100;
+
+        setProgress(progress);
+        updateMultiverse(scrollPos);
+    });
+});
+
+// 점프 함수는 전역 유지
 function jumpTo(id) {
     const target = document.getElementById(id);
-    if (target) {
-        window.scrollTo({ top: target.offsetTop, behavior: 'smooth' });
-    }
+    if (target) window.scrollTo({ top: target.offsetTop, behavior: 'smooth' });
 }
