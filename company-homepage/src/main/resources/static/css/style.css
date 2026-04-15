@@ -25,6 +25,7 @@
     --color-wave-7: #FFBD33; /* O */
     --color-wave-8: #BD33FF; /* R */
     --color-wave-9: #00C73C; /* K */
+    --color-wave-10: #FF33A1;/* S */
 }
 
 * {
@@ -374,10 +375,6 @@ ul {
     grid-template-columns: repeat(4, 1fr);
     gap: 20px; 
 }
-.carousel-item-group:last-child {
-    grid-template-columns: repeat(4, 1fr); 
-}
-
 
 .work-item {
     height: 350px;
@@ -693,22 +690,6 @@ ul {
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
-}
-
-
-
-:root {
-    --color-dark-bg: #121212;
-    --color-dark-card: #1a1a1a;
-    --color-white: #ffffff;
-    --color-wave-1: #FF5733; /* 기본 오렌지 포인트 */
-}
-
-body.dark-mode {
-    background-color: var(--color-dark-bg);
-    color: var(--color-white);
-    margin: 0;
-    font-family: 'Arial', sans-serif;
 }
 
 /* 팀 섹션 레이아웃 */
