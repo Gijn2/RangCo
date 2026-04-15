@@ -187,13 +187,13 @@ document.addEventListener('DOMContentLoaded', () => {
         // 프로젝트별 경로 설정
         switch (projectName) {
             case 'projectM':
-                targetPath = './project/projectM.html';
+                targetPath = '/projectM';
                 break;
             case 'projectR':
-                targetPath = './project/projectR.html';
+                targetPath = '/projectR';
                 break;
             case 'test':
-                targetPath = './project/test.html';
+                targetPath = '/test';
                 break;
 
             default:

@@ -90,7 +90,7 @@
                     <h4 style="font-family: var(--font-header); font-size: 1.8rem; color: var(--rang-gold); margin-bottom: 10px;">MANDAO: The Private Sanctuary</h4>
                     <p style="color: #aaa; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px;">VIP Exclusive Retreat</p>
                     <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 30px;">끝없는 엔터테인먼트의 소용돌이에서 벗어나, 선택받은 소수만을 위해 준비된 완벽한 고요함. 최고급 프라이빗 민박 '만다오'에서 당신만의 시간을 예약하세요.</p>
-                    <a th:href="@{/mandao}" id="mandaoReserveBtn" class="theme-btn" style="color: var(--rang-gold); border-color: var(--rang-gold);">만다오 비밀 초대장 열기</a>
+                    <a th:onclick="|navigateToProject('${mandao}')|" id="mandaoReserveBtn" class="theme-btn" style="color: var(--rang-gold); border-color: var(--rang-gold);">만다오 비밀 초대장 열기</a>
                 </div>
                 <div style="flex: 1; height: 300px; background: rgba(255,255,255,0.02); border: 1px dashed var(--glass-border); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.2); font-family: var(--font-header);">
                     [ MANDAO PREVIEW ]
