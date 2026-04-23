@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R.POLL | Universal Community</title>
+    <link rel="stylesheet" href="../css/projectR.css">
+    <script defer src="../js/projectR.js"></script>
+</head>
+<body>
+<canvas id="connection-canvas"></canvas>
+
+<header class="game-header" style="border-bottom-color: rgba(59, 130, 246, 0.3);">
+    <div class="nav-left-group">
+        <div class="city-logo" style="color: var(--color-wepoll-blue);">WEPOLL<span>RANG NETWORK</span></div>
+        <a th:href="@{/main}" class="theme-btn">CITY MAIN</a>
+    </div>
+    <div class="nav-controls">
+        <button class="theme-btn" style="background: rgba(59, 130, 246, 0.2); border-color: var(--color-wepoll-blue);">LOG IN</button>
+    </div>
+</header>
+
+<main style="padding: 0 20px;">
+    <div class="poll-container">
+        <div class="poll-header" style="text-align: center;">
+            <h1 style="font-family: var(--font-header); font-size: 2.5rem; color: var(--color-wepoll-blue); margin-bottom: 10px;">Universal Issue Voting</h1>
+            <p style="color: var(--text-muted);">시민 여러분의 의견이 세계관의 흐름을 결정합니다.</p>
+        </div>
+
+        <div style="margin: 40px 0;">
+            <h2 style="font-size: 1.5rem; margin-bottom: 20px; line-height: 1.4;">Q. 어비스(Abyss) 구역의 카지노 크루즈 운항 시간을 24시간으로 연장해야 할까요?</h2>
+
+            <div style="display: flex; flex-direction: column; gap: 25px;">
+                <div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                        <span style="font-weight: bold;">찬성 (Agree)</span>
+                        <span style="color: var(--color-wepoll-blue); font-family: var(--font-cyber);">65%</span>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.05); width: 100%; height: 12px; border-radius: 6px; overflow: hidden;">
+                        <div class="bar-up" style="width: 65%;"></div>
+                    </div>
+                    <button class="theme-btn" style="margin-top: 15px; width: 100%; background: rgba(59, 130, 246, 0.1); border-color: var(--color-wepoll-blue); color: var(--color-wepoll-blue);">찬성에 투표하기</button>
+                </div>
+
+                <div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                        <span style="font-weight: bold;">반대 (Disagree)</span>
+                        <span style="color: var(--color-abyss-red); font-family: var(--font-cyber);">35%</span>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.05); width: 100%; height: 12px; border-radius: 6px; overflow: hidden;">
+                        <div class="bar-down" style="width: 35%;"></div>
+                    </div>
+                    <button class="theme-btn" style="margin-top: 15px; width: 100%; border-color: rgba(255,255,255,0.2);">반대에 투표하기</button>
+                </div>
+            </div>
+
+            <p style="text-align: right; color: var(--text-muted); font-size: 0.85rem; margin-top: 30px; font-family: var(--font-cyber);">Total Participants: <span id="total-votes">1,245</span></p>
+        </div>
+
+        <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px;">
+            <h3 style="font-family: var(--font-header); color: var(--rang-gold); margin-bottom: 20px;">Citizens' Comments</h3>
+            <div style="background: rgba(0,0,0,0.5); padding: 15px; border-radius: 8px; margin-bottom: 10px; border-left: 3px solid var(--color-wepoll-blue);">
+                <span style="color: #aaa; font-size: 0.8rem;">Citizen_X82</span>
+                <p style="margin-top: 5px; font-size: 0.95rem;">24시간 연장하면 치안 문제가 생기지 않을까요? 반대합니다.</p>
+            </div>
+            <div style="background: rgba(0,0,0,0.5); padding: 15px; border-radius: 8px; border-left: 3px solid var(--color-wepoll-blue);">
+                <span style="color: #aaa; font-size: 0.8rem;">NightOwl_99</span>
+                <p style="margin-top: 5px; font-size: 0.95rem;">어비스는 원래 그런 구역입니다. 찬성!</p>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>
