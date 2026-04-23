@@ -1,16 +1,73 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Rang Company - Welcome</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rang Works - Home</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/Rang_Logo_icon.png">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        /* 핵심 레이아웃 유지를 위한 최소한의 스타일 */
+        body { background-color: #121212; color: #ffffff; font-family: 'Pretendard', sans-serif; margin: 0; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 50px 20px; }
+        h1 { font-size: 2.5rem; margin-bottom: 40px; text-align: center; }
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .card { background: #1e1e1e; padding: 25px; border-radius: 15px; transition: 0.3s; text-decoration: none; color: white; border: 1px solid #333; }
+        .card:hover { transform: translateY(-5px); border-color: aquamarine; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+        .card h3 { margin-top: 0; color: aquamarine; }
+        .section-title { border-left: 4px solid aquamarine; padding-left: 15px; margin: 40px 0 20px; }
+        .external { border-color: #444; }
+        .external h3 { color: #aaa; }
+    </style>
 </head>
 <body>
-    <h1>Rang Company Homepage</h1>
-    <form th:action="@{/member/login}" method="post">
-        <input type="text" name="username" placeholder="아이디" required>
-        <input type="password" name="password" placeholder="비밀번호" required>
-        <button type="submit">로그인</button>
-    </form>
-    <p>계정이 없으신가요? <a th:href="@{/member/signup}">회원가입</a></p>
+
+<div class="container">
+    <h1>RANG WORKS</h1>
+
+    <h2 class="section-title">My Projects</h2>
+    <div class="grid-container">
+        <a href="/index.html" class="card">
+            <h3>🏠 Main Index</h3>
+            <p>정적 메인 페이지로 이동합니다.</p>
+        </a>
+
+        <a href="/project/projectR.html" class="card">
+            <h3>🎡 Project R</h3>
+            <p>아라반의 세련된 세상, 프로젝트 R 상세 보기</p>
+        </a>
+
+        <a href="/mandao.html" class="card">
+            <h3>🍊 Mandao</h3>
+            <p>김만다오 대표 및 회사 소개 페이지</p>
+        </a>
+
+        <a href="/project/test.html" class="card">
+            <h3>📊 R.Poll</h3>
+            <p>커뮤니티 투표 및 설문 조사 시스템</p>
+        </a>
+    </div>
+
+    <h2 class="section-title">Official Channels</h2>
+    <div class="grid-container">
+        <a href="https://www.youtube.com/@김만다오" target="_blank" class="card external">
+            <h3>YouTube</h3>
+            <p>공식 유튜브 채널 바로가기</p>
+        </a>
+        <a href="https://cafe.naver.com/" target="_blank" class="card external">
+            <h3>Naver Cafe</h3>
+            <p>커뮤니티 네이버 카페</p>
+        </a>
+        <a href="https://comic.naver.com/webtoon" target="_blank" class="card external">
+            <h3>Webtoon</h3>
+            <p>네이버 웹툰 연재처</p>
+        </a>
+        <a href="https://novelpia.com/novel/219792" target="_blank" class="card external">
+            <h3>Novelpia</h3>
+            <p>노벨피아 소설 연재처</p>
+        </a>
+    </div>
+</div>
+
 </body>
 </html>

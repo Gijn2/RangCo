@@ -2,17 +2,23 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>오류 발생</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}"> </head>
+    <title>페이지 오류</title>
+    <style>
+        body { text-align: center; padding: 50px; font-family: sans-serif; }
+        .error-code { font-size: 50px; color: #ff4d4f; }
+        .message { font-size: 20px; margin: 20px 0; }
+        .btn-home {
+            padding: 10px 20px; background-color: #007bff;
+            color: white; text-decoration: none; border-radius: 5px;
+        }
+    </style>
+</head>
 <body>
-<div style="text-align: center; margin-top: 100px;">
-    <h1>⚠️ 서비스 이용에 불편을 드려 죄송합니다.</h1>
-    <p>일시적인 오류가 발생했거나 요청하신 페이지를 처리할 수 없습니다.</p>
-
-    <h3 style="color: #ff4d4d;">에러 메시지 내용</h3>
-
-    <hr>
-    <a th:href="@{/}">메인 페이지로 돌아가기</a>
+<div class="error-code" th:text="${code}">500</div>
+<div class="message">
+    <p th:text="${msg}">현재 페이지에 오류가 생겼습니다.</p>
+    <p>메인페이지로 이동해주세요.</p>
 </div>
+<button th:href="${/}" class="btn-home">메인페이지로 이동</button>
 </body>
 </html>
