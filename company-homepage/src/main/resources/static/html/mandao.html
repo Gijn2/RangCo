@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,73 +7,72 @@
     <link rel="stylesheet" href="../css/projectR.css">
     <script defer src="../js/projectR.js"></script>
 </head>
-<body class="mandao-page">
+<body style="background: radial-gradient(circle at top, #0f0a05 0%, #050507 100%);">
 <canvas id="connection-canvas"></canvas>
 
 <header class="game-header">
-    <div class="nav-left-group">
-        <div class="city-logo">RANG<span>UNIVERSAL CITY</span></div>
-        <button href="/main" class="theme-btn">CITY MAIN</button>
-    </div>
+    <a href="/projectR" class="city-logo">
+        MANDAO<span>PRIVATE SANCTUARY</span>
+    </a>
+    <nav class="nav-links">
+        <a href="/projectR" class="nav-btn">RETURN TO CITY</a>
+    </nav>
 </header>
 
-<main style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
-    <section class="hero-section">
-        <h1 style="font-family: var(--font-header); font-size: 4.5rem; color: var(--rang-gold); letter-spacing: 10px;">MANDAO</h1>
-        <p style="color: var(--color-mandao); font-size: 1.2rem; letter-spacing: 2px; margin-top: 10px; opacity: 0.8;">선택받은 소수만을 위한 완벽한 고요함</p>
-        <div style="width: 50px; height: 1px; background: var(--rang-gold); margin: 30px auto;"></div>
-    </section>
+<main class="section-padding" style="max-width: 1000px; margin: 0 auto;">
+    <div style="text-align: center; margin-top: 50px; margin-bottom: 100px;">
+        <p style="font-family: 'Orbitron'; letter-spacing: 5px; color: var(--accent-gold); font-size: 0.8rem;">VIP EXCLUSIVE RETREAT</p>
+        <h1 style="font-family: 'Cinzel'; font-size: 4rem; color: var(--accent-gold); margin: 20px 0;">MANDAO</h1>
+        <p style="color: var(--text-muted); font-weight: 200; font-size: 1.1rem; letter-spacing: 2px;">완벽한 고요함, 당신만을 위한 심연의 휴식</p>
+    </div>
 
-    <section class="facility-gallery">
-        <div style="display: flex; flex-direction: column; gap: 20px;">
-            <div class="photo-slot">
-                [ 풀 빌라 전경 이미지 ]
-            </div>
-            <div>
-                <h3 style="font-family: var(--font-header); font-size: 1.5rem; color: var(--rang-gold); margin-bottom: 10px;">Private Pool Villa</h3>
-                <p style="color: var(--text-muted); line-height: 1.6;">숲 한가운데 자리 잡은 독채 빌라에서 누구의 방해도 받지 않는 휴식을 즐기세요. 천연 온천수와 최고급 어메니티가 준비되어 있습니다.</p>
-            </div>
+    <div class="grid-2" style="margin-bottom: 120px;">
+        <div class="booth-card">
+            <div class="media-box" style="height: 300px;">IMAGE: FOREST SUITE</div>
+            <h3 style="font-family: 'Cinzel'; color: var(--accent-gold);">Forest Suite</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">누구에게도 방해받지 않는 숲속의 고립된 럭셔리 독채 빌라.</p>
         </div>
-
-        <div style="display: flex; flex-direction: column; gap: 20px;">
-            <div class="photo-slot">
-                [ 다이닝 라운지 이미지 ]
-            </div>
-            <div>
-                <h3 style="font-family: var(--font-header); font-size: 1.5rem; color: var(--rang-gold); margin-bottom: 10px;">Signature Dining</h3>
-                <p style="color: var(--text-muted); line-height: 1.6;">미슐랭 3스타 출신 셰프가 선사하는 지역 제철 요리를 프라이빗 룸에서 즐기실 수 있습니다. 모든 메뉴는 고객의 취향에 맞춰 커스텀됩니다.</p>
-            </div>
+        <div class="booth-card">
+            <div class="media-box" style="height: 300px;">IMAGE: SKY PAVILION</div>
+            <h3 style="font-family: 'Cinzel'; color: var(--accent-gold);">Sky Pavilion</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">도시의 야경이 한눈에 내려다보이는 최상층 VIP 전용 펜트하우스.</p>
         </div>
-    </section>
+    </div>
 
-    <section class="booking-section">
-        <h2 style="font-family: var(--font-header); font-size: 2rem; color: var(--rang-gold); text-align: center; margin-bottom: 40px; letter-spacing: 5px;">RESERVATION</h2>
-        <form id="reservationForm" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-            <div>
-                <label style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 8px; display: block;">예약자 성함</label>
-                <input type="text" class="custom-input" placeholder="Name" required>
+    <section id="reservation" style="background: var(--glass-bg); padding: 60px; border-radius: var(--radius-lg); border: 1px solid var(--glass-border);">
+        <h2 style="font-family: 'Cinzel'; text-align: center; color: var(--accent-gold); margin-bottom: 40px; letter-spacing: 5px;">RESERVATION</h2>
+
+        <form id="reservationForm" class="grid-2" style="gap: 20px;">
+            <div style="grid-column: span 1;">
+                <label style="font-size: 0.7rem; color: var(--accent-gold); font-family: 'Orbitron';">GUEST NAME</label>
+                <input type="text" id="guestName" placeholder="성함을 입력하세요" required>
             </div>
-            <div>
-                <label style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 8px; display: block;">연락처</label>
-                <input type="tel" class="custom-input" placeholder="Phone Number" required>
+            <div style="grid-column: span 1;">
+                <label style="font-size: 0.7rem; color: var(--accent-gold); font-family: 'Orbitron';">PHONE NUMBER</label>
+                <input type="tel" id="guestPhone" placeholder="010-0000-0000" required>
             </div>
-            <div>
-                <label style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 8px; display: block;">체크인 날짜</label>
-                <input type="date" class="custom-input" required>
+            <div style="grid-column: span 1;">
+                <label style="font-size: 0.7rem; color: var(--accent-gold); font-family: 'Orbitron';">CHECK-IN</label>
+                <input type="date" id="checkIn" required>
             </div>
-            <div>
-                <label style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 8px; display: block;">객실 타입</label>
-                <select class="custom-input" required>
+            <div style="grid-column: span 1;">
+                <label style="font-size: 0.7rem; color: var(--accent-gold); font-family: 'Orbitron';">ROOM TYPE</label>
+                <select id="roomType">
                     <option value="forest">Forest Suite (2인)</option>
-                    <option value="abyss">Abyss Deep Ocean (4인)</option>
                     <option value="sky">Sky Pavilion (VIP)</option>
+                    <option value="abyss">Abyss Deep Ocean (4인)</option>
                 </select>
             </div>
-            <div style="grid-column: span 2; margin-top: 20px;">
-                <button type="submit" class="gold-btn" style="width: 100%; padding: 18px; font-size: 1.1rem; letter-spacing: 2px;">예약 신청 (REQUEST BOOKING)</button>
+            <div style="grid-column: span 2; margin-top: 30px;">
+                <button type="submit" class="gold-btn" style="padding: 20px; font-size: 1rem;">REQUEST BOOKING</button>
+                <p id="responseMsg" style="text-align: center; margin-top: 20px; font-size: 0.8rem;"></p>
             </div>
         </form>
     </section>
 </main>
+
+<footer style="text-align: center; padding: 50px; color: var(--text-muted); font-size: 0.7rem; letter-spacing: 2px;">
+    © RANG UNIVERSAL CITY - MANDAO SANCTUARY PRIVATE MEMBERSHIP ONLY
+</footer>
 </body>
 </html>

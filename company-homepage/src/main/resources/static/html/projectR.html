@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,103 +11,97 @@
 <canvas id="connection-canvas"></canvas>
 
 <div id="verification-overlay" class="overlay">
-    <div class="verif-content">
-        <h2 class="verif-title">AGE VERIFICATION</h2>
-        <p id="verif-msg" style="color: var(--text-muted); margin-bottom: 20px;">
-            "잠시만요! 여기는 비밀스러운 곳이라.. <br>당신이 어른인지 제가 확인해봐도 될까요? (찡긋)"
+    <div class="verif-box">
+        <h2 style="font-family: 'Cinzel'; color: var(--accent-gold); margin-bottom: 20px;">ACCESS RESTRICTED</h2>
+        <p style="color: var(--text-muted); margin-bottom: 30px;">
+            이 구역은 '어비스' 멤버십 전용 공간입니다.<br>계속하시려면 생년월일을 확인해 주세요.
         </p>
         <input type="date" id="age-input">
-        <div style="display: flex; justify-content: center; gap: 10px; margin-top: 20px;">
-            <button onclick="verifyAge()" class="gold-btn">VERIFY</button>
-            <button onclick="exitVerification('안전한 광장으로 다시 안내해 드릴게요!')" class="theme-btn" style="color: #ccc;">CLOSE</button>
+        <div style="display: flex; gap: 10px; margin-top: 20px;">
+            <button onclick="App.verifyAge()" class="gold-btn" style="flex: 2;">인증하기</button>
+            <button onclick="window.scrollTo({top:0, behavior:'smooth'})" class="nav-btn" style="flex: 1;">돌아가기</button>
         </div>
     </div>
 </div>
 
 <header class="game-header">
-    <div class="nav-left-group">
-        <div class="city-logo">RANG<span>UNIVERSAL CITY</span></div>
-        <a href="/index" class="terminate-btn">TERMINATE</a>
-        <a href="/test" class="theme-btn" style="color: var(--color-wepoll-blue); border-color: var(--color-wepoll-blue);">WEPOLL (Community)</a>
-    </div>
-    <div class="nav-controls">
-        <div style="display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.08); padding: 8px 25px; border-radius: 40px; border: 1px solid var(--glass-border);">
-            <span style="width: 8px; height: 8px; background: var(--color-park-green); border-radius: 50%; box-shadow: 0 0 10px var(--color-park-green);"></span>
-            <span id="rang-message" style="font-size: 0.85rem;">"안녕하세요! 저는 당신의 가이드 '랑'이에요!"</span>
-        </div>
-    </div>
+    <a href="/" class="city-logo">
+        RANG<span>UNIVERSAL CITY</span>
+    </a>
+    <nav class="nav-links">
+        <a href="/test" class="nav-btn">WEPOLL</a>
+        <a href="/index" class="nav-btn primary">TERMINATE</a>
+    </nav>
 </header>
 
-<nav class="mini-map">
-    <div class="map-item active" onclick="jumpTo('sector-plaza')" data-name="Plaza"></div>
-    <div class="map-item" onclick="jumpTo('sector-park')" data-name="Park"></div>
-    <div class="map-item" onclick="jumpTo('sector-abyss')" data-name="Abyss"></div>
-</nav>
-
 <main>
-    <section id="sector-plaza" class="city-hero">
-        <div class="hero-content">
-            <p style="letter-spacing: 5px; color: var(--text-muted);">A NEW PARADIGM OF CONNECTION</p>
-            <h1 class="main-title">PROJECT R</h1>
-            <p style="font-size: 1.2rem; color: var(--text-muted);">당신과 세계, 그리고 상상이 하나로 연결되는 거대 도시</p>
+    <section class="hero-section">
+        <p style="letter-spacing: 8px; color: var(--accent-gold); font-family: 'Orbitron'; font-size: 0.8rem;">THE NEXT DIMENSION</p>
+        <h1 class="main-title">PROJECT R</h1>
+        <p style="max-width: 600px; color: var(--text-muted); font-weight: 200;">
+            당신의 상상이 현실과 연결되는 거대 지능형 도시.<br>지금 새로운 감각의 세계를 경험하세요.
+        </p>
+    </section>
+
+    <section class="section-padding">
+        <div style="text-align: center; margin-bottom: 80px;">
+            <h2 style="font-family: 'Cinzel'; font-size: 2.5rem; color: var(--accent-gold);">UNIVERSAL BOOTHS</h2>
+            <div style="width: 40px; height: 1px; background: var(--accent-gold); margin: 20px auto;"></div>
+        </div>
+
+        <div class="grid-2">
+            <article class="booth-card">
+                <div class="media-box">
+                    <span style="letter-spacing: 5px;">VOICE DRAMA EXHIBITION</span>
+                </div>
+                <span style="color: var(--accent-gold); font-family: 'Orbitron'; font-size: 0.7rem;">BOOTH #01</span>
+                <h3 style="font-family: 'Cinzel'; font-size: 1.8rem; margin: 10px 0;">빌어먹을 세계를 바꾸고 싶다</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;">
+                    회귀한 주인공의 여정을 실제 성우의 연기와 함께 인터랙티브 미디어 아트로 재해석했습니다.
+                </p>
+                <button class="gold-btn">RESERVE NOW</button>
+            </article>
+
+            <article class="booth-card">
+                <div class="media-box">
+                    <span style="letter-spacing: 5px;">NEURAL INTERFACE TEST</span>
+                </div>
+                <span style="color: var(--accent-gold); font-family: 'Orbitron'; font-size: 0.7rem;">BOOTH #02</span>
+                <h3 style="font-family: 'Cinzel'; font-size: 1.8rem; margin: 10px 0;">디지털 잔상 속의 기억</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;">
+                    도시가 기록한 당신의 조각들을 찾아보세요. 가장 개인적인 연결의 시작점입니다.
+                </p>
+                <button class="gold-btn">RESERVE NOW</button>
+            </article>
         </div>
     </section>
 
-    <section id="sector-park" class="sector-container">
-        <div class="sector-tag">DISTRICT: RANG-LAND THEME PARK</div>
-        <div style="text-align: center; margin-bottom: 100px;">
-            <h2 style="font-family: var(--font-header); font-size: 3rem; color: var(--rang-gold);">Universal Booth Tour</h2>
-            <p style="color: var(--text-muted);">상상이 현실이 되는 곳, 각 부스의 특별한 이야기를 만나보세요.</p>
-        </div>
-
-        <div class="booth-tour-container">
-            <div class="booth-section">
-                <div class="booth-media">
-                    <div class="media-placeholder">VOICE & VIDEO EXHIBITION</div>
-                    <div style="position: absolute; top: 20px; left: 20px; background: var(--rang-gold); color: #000; padding: 5px 15px; font-family: var(--font-header); font-weight: bold;">BOOTH #01</div>
-                </div>
-                <div class="booth-info">
-                    <span style="color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px;">Fantasy Web-Novel World</span>
-                    <h3>빌어먹을 세계를 바꾸고 싶다</h3>
-                    <p class="booth-desc">회귀한 주인공의 파란만장한 여정. 본 부스에서는 실제 성우의 보이스 드라마와 함께 세계를 구원하는 인터랙티브 미디어 아트를 감상할 수 있습니다.</p>
-                    <button class="gold-btn">체험 예약하기</button>
-                </div>
+    <section id="sector-abyss" class="section-padding" style="background: linear-gradient(to bottom, transparent, #0a0000);">
+        <div class="grid-2" style="align-items: center;">
+            <div>
+                <span style="color: var(--accent-red); font-family: 'Orbitron'; letter-spacing: 3px;">ADULT EXCLUSIVE</span>
+                <h2 style="font-family: 'Cinzel'; font-size: 3rem; color: var(--accent-gold); margin: 20px 0;">ABYSS ZONE</h2>
+                <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 30px;">
+                    심연 속에 숨겨진 고요한 휴식처. 가장 프라이빗하고 고급스러운 엔터테인먼트를 제공하는 만다오를 만나보세요.
+                </p>
+                <a href="/mandao" class="gold-btn" style="display: block; text-align: center; text-decoration: none;">만다오 비밀 초대장 열기</a>
             </div>
-        </div>
-    </section>
-
-    <section id="sector-abyss" class="sector-container">
-        <div class="sector-tag">DISTRICT: ABYSS (19+)</div>
-        <div class="archive-grid">
-            <div class="adult-exclusive" style="text-align: center; border-radius: 8px;">
-                <span style="color: var(--color-abyss-red); border: 1px solid var(--color-abyss-red); padding: 5px 10px; font-size: 0.8rem; margin-bottom: 20px; display: inline-block;">Adult Exclusive Zone</span>
-                <h2 style="font-family: var(--font-header); font-size: 2.5rem; color: var(--rang-gold); margin-bottom: 15px;">Premium Entertainment</h2>
-                <p style="color: var(--text-muted);">성인 인증을 거친 시민만을 위한 고급 문화 공간입니다.</p>
-            </div>
-
-            <div style="display: flex; gap: 50px; align-items: center; border-top: 1px dashed var(--rang-gold); padding-top: 50px; margin-top: 20px;">
-                <div style="flex: 1;">
-                    <h4 style="font-family: var(--font-header); font-size: 1.8rem; color: var(--rang-gold); margin-bottom: 10px;">MANDAO: The Private Sanctuary</h4>
-                    <p style="color: #aaa; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px;">VIP Exclusive Retreat</p>
-                    <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 30px;">끝없는 엔터테인먼트의 소용돌이에서 벗어나, 선택받은 소수만을 위해 준비된 완벽한 고요함. 최고급 프라이빗 민박 '만다오'에서 당신만의 시간을 예약하세요.</p>
-                    <a onclick="|navigateToProject('${mandao}')|" id="mandaoReserveBtn" class="theme-btn" style="color: var(--rang-gold); border-color: var(--rang-gold);">만다오 비밀 초대장 열기</a>
-                </div>
-                <div style="flex: 1; height: 300px; background: rgba(255,255,255,0.02); border: 1px dashed var(--glass-border); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.2); font-family: var(--font-header);">
-                    [ MANDAO PREVIEW ]
-                </div>
+            <div class="media-box" style="height: 400px; border-color: var(--accent-red);">
+                <span style="color: var(--accent-red); opacity: 0.5;">[ MANDAO PRIVATE PREVIEW ]</span>
             </div>
         </div>
     </section>
 </main>
 
-<div class="fragment-container">
-    <svg class="progress-ring" width="100" height="100">
-        <circle stroke="rgba(255,255,255,0.1)" stroke-width="4" fill="transparent" r="40" cx="50" cy="50"/>
-        <circle class="progress-ring__circle" id="fragment-progress" stroke="#D4AF37" stroke-width="4" fill="transparent" r="40" cx="50" cy="50"/>
-    </svg>
-    <div class="progress-text">
-        <span id="fragment-percent">0</span>%<br>PROGRESS
+<div class="scroll-tracker">
+    <div style="text-align: right; line-height: 1.2;">
+        <span style="font-size: 0.6rem; color: var(--text-muted);">CONNECTING...</span><br>
+        <span id="fragment-percent" style="font-size: 1.2rem; color: var(--accent-gold);">0</span>%
     </div>
+    <svg class="progress-ring" width="50" height="50">
+        <circle stroke="var(--glass-border)" stroke-width="2" fill="transparent" r="20" cx="25" cy="25"/>
+        <circle id="fragment-progress" stroke="var(--accent-gold)" stroke-width="2" fill="transparent" r="20" cx="25" cy="25"/>
+    </svg>
 </div>
 </body>
 </html>
